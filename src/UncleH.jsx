@@ -16,13 +16,15 @@ const STRIP_ITEMS = [
 
 const SERVICES = [
   { num:"01", icon:"🪡", title:"Leather Repair",           desc:"Cracks, tears, and holes in leather seats and surfaces restored to like-new condition." },
-  { num:"02", icon:"🔧", title:"Vinyl Repair",             desc:"Full vinyl repair and restoration for seats, door panels, dashboards, and more." },
+  { num:"02", icon:"🪡", title:"Vinyl Repair",             desc:"Full vinyl repair and restoration for seats, door panels, dashboards, and more." },
   { num:"03", icon:"🚬", title:"Burn Repair",              desc:"Cigarette burns, heat damage, and melt marks expertly repaired and blended." },
   { num:"04", icon:"🎨", title:"Color Restoration",        desc:"Faded or worn interiors revived with precision dyeing and custom color matching." },
   { num:"05", icon:"✂️", title:"Scuff & Scratch Removal",  desc:"Surface scuffs and scratches buffed and treated to restore a clean, smooth finish." },
   { num:"06", icon:"🚗", title:"Dashboard & Door Panels",  desc:"Cracked or warped dashboards and panels repaired and refinished professionally." },
   { num:"07", icon:"⭕", title:"Steering Wheel Restoration",desc:"Worn or peeling steering wheels brought back to life with exact material matching." },
-  { num:"08", icon:"✨", title:"Deep Cleaning & Conditioning",desc:"Full interior deep cleaning with professional conditioning to protect and preserve." },
+  { num:"08", icon:"💺", title:"Seatbelt Stains",           desc:"Stubborn seatbelt stains cleaned and restored to a fresh, like-new appearance." },
+  { num:"09", icon:"🫟", title:"Seat Stains",               desc:"Deep-set seat stains lifted and treated across leather, vinyl, and fabric surfaces." },
+  { num:"10", icon:"🧵", title:"Stitching",                 desc:"Leather, vinyl, and cloth stitching repaired or replaced with precision thread matching." },
 ];
 
 const EVAL_STEPS = [
@@ -32,10 +34,8 @@ const EVAL_STEPS = [
 ];
 
 const CONTACT_ITEMS = [
-  { icon:"📞", label:"Phone",     val:"(650) 123-4567" },
-  { icon:"✉️", label:"Email",     val:"uncleh.repair@gmail.com" },
-  { icon:"📸", label:"Instagram", val:"@uncleh.interior" },
-  { icon:"🌐", label:"Website",   val:"unclehinterior.com" },
+  { icon:"📞", label:"Phone / WhatsApp", val:"(650) 732-5652" },
+  { icon:"✉️", label:"Email",            val:"Support@unclehinterior.com" },
 ];
 
 const SERVICE_OPTIONS = [
@@ -486,10 +486,10 @@ function CTABanner() {
         </h2>
       </div>
       <div style={{ display:"flex", gap:16, alignItems:"center", flexShrink:0 }}>
-        <a href="tel:6501234567" style={{
+        <a href="tel:6507325652" style={{
           fontFamily:"'Bebas Neue',sans-serif", fontSize:28, letterSpacing:2,
           color:"#fff", textDecoration:"none",
-        }}>(650) 123-4567</a>
+        }}>(650) 732-5652</a>
         <BtnPrimary href="#contact">Book Now</BtnPrimary>
       </div>
       <style>{`
@@ -701,7 +701,7 @@ function Footer() {
         © 2026 Uncle H Interior Repair · Leather & Vinyl Specialist · Mobile Service by Appointment
       </div>
       <div style={{ display:"flex", gap:16 }}>
-        {["📸","📘","▶️"].map((icon, i) => (
+        {["📘","▶️"].map((icon, i) => (
           <a key={i} href="#" style={{
             width:38, height:38, border:"1px solid rgba(255,255,255,0.1)",
             display:"flex", alignItems:"center", justifyContent:"center",
