@@ -698,7 +698,7 @@ function Footer() {
         UNCLE <span style={{ color:"var(--red)" }}>H</span> INTERIOR REPAIR
       </div>
       <div style={{ fontSize:12, color:"#555", fontFamily:"'Barlow Condensed',sans-serif", letterSpacing:2 }}>
-        © 2026 Uncle H Interior Repair · Leather & Vinyl Specialist · Mobile Service by Appointment
+        © 2026 Uncle H Interior Specialist · Leather & Vinyl Specialist · Mobile Service by Appointment
       </div>
       <div style={{ display:"flex", gap:16 }}>
         {["📘","▶️"].map((icon, i) => (
