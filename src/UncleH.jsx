@@ -695,7 +695,7 @@ function Footer() {
       gap:24, flexWrap:"wrap",
     }} className="footer-inner">
       <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:24, letterSpacing:4, color:"#fff" }}>
-        UNCLE <span style={{ color:"var(--red)" }}>H</span> INTERIOR REPAIR
+        UNCLE <span style={{ color:"var(--red)" }}>H</span> INTERIOR SPECIALIST
       </div>
       <div style={{ fontSize:12, color:"#555", fontFamily:"'Barlow Condensed',sans-serif", letterSpacing:2 }}>
         © 2026 Uncle H Interior Specialist · Leather & Vinyl Specialist · Mobile Service by Appointment
