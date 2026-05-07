@@ -1017,6 +1017,151 @@ function ChatWidget() {
   );
 }
 
+// ─── BEFORE / AFTER SLIDER ───────────────────────────────────────────────────
+function BeforeAfterSlider({ beforeUrl, afterUrl, onDragStart, onDragEnd }) {
+  const [value, setValue] = useState(50);
+  return (
+    <div style={{
+      position:"relative", width:"100%", aspectRatio:"16/9",
+      overflow:"hidden", userSelect:"none", cursor:"ew-resize",
+      background:"var(--dark3)",
+    }} className="ba-slider-container">
+      {/* Before image — underneath */}
+      <img src={beforeUrl} alt="Before"
+        style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", display:"block", transform:"scale(0.88)", transformOrigin:"center" }} />
+
+      {/* After image — clipped to reveal from right */}
+      <img src={afterUrl} alt="After"
+        style={{
+          position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", display:"block",
+          transform:"scale(0.88)", transformOrigin:"center",
+          clipPath:`inset(0 0 0 ${value}%)`,
+          transition:"clip-path 0s",
+        }} />
+
+      {/* Divider line */}
+      <div style={{
+        position:"absolute", top:0, bottom:0,
+        left:`${value}%`, transform:"translateX(-50%)",
+        width:2, background:"rgba(255,255,255,0.9)",
+        pointerEvents:"none", zIndex:2,
+      }}>
+        {/* Handle */}
+        <div style={{
+          position:"absolute", top:"50%", left:"50%",
+          transform:"translate(-50%,-50%)",
+          width:44, height:44, borderRadius:"50%",
+          background:"var(--red)", border:"3px solid #fff",
+          display:"flex", alignItems:"center", justifyContent:"center",
+          fontSize:16, color:"#fff",
+          boxShadow:"0 2px 16px rgba(0,0,0,0.6)",
+        }}>⟺</div>
+      </div>
+
+      {/* Labels */}
+      <span style={{
+        position:"absolute", top:16, left:20, zIndex:3, pointerEvents:"none",
+        fontFamily:"'Barlow Condensed',sans-serif", fontSize:12, fontWeight:600,
+        letterSpacing:3, textTransform:"uppercase", color:"#fff",
+        background:"rgba(0,0,0,0.55)", padding:"4px 12px",
+      }}>Before</span>
+      <span style={{
+        position:"absolute", top:16, right:20, zIndex:3, pointerEvents:"none",
+        fontFamily:"'Barlow Condensed',sans-serif", fontSize:12, fontWeight:600,
+        letterSpacing:3, textTransform:"uppercase", color:"#fff",
+        background:"rgba(204,20,20,0.75)", padding:"4px 12px",
+      }}>After</span>
+
+      {/* Transparent range input — handles all pointer interaction */}
+      <input type="range" min={0} max={100} value={value}
+        onChange={e => setValue(Number(e.target.value))}
+        onMouseDown={onDragStart} onTouchStart={onDragStart}
+        onMouseUp={onDragEnd}    onTouchEnd={onDragEnd}
+        style={{
+          position:"absolute", inset:0, width:"100%", height:"100%",
+          opacity:0, cursor:"ew-resize", margin:0, zIndex:4,
+          touchAction:"none",
+        }} />
+    </div>
+  );
+}
+
+// ─── BEFORE / AFTER GALLERY SECTION ──────────────────────────────────────────
+function BeforeAfterSection() {
+  const [pairs, setPairs]     = useState([]);
+  const [current, setCurrent] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const isDragging            = useRef(false);
+
+  useEffect(() => {
+    fetch(`${config.apiUrl}/api/images`)
+      .then(r => r.json())
+      .then(data => { setPairs(data); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
+
+  // Auto-advance; pauses while user drags the handle
+  useEffect(() => {
+    if (pairs.length <= 1) return;
+    const timer = setInterval(() => {
+      if (!isDragging.current) setCurrent(c => (c + 1) % pairs.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [current, pairs.length]);
+
+  if (loading || pairs.length === 0) return null;
+
+  const pair = pairs[current];
+
+  return (
+    <section id="gallery" style={{ padding:"120px 60px", background:"var(--dark)" }} className="gallery-section">
+      <div style={{ textAlign:"center", marginBottom:56 }}>
+        <span style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:11, fontWeight:600, letterSpacing:5, color:"var(--red)", textTransform:"uppercase", marginBottom:16, display:"block" }}>
+          Real Results
+        </span>
+        <h2 style={h2Style}>BEFORE <span style={{ color:"var(--red)" }}>&amp; AFTER</span></h2>
+        <p style={{ fontSize:14, fontWeight:300, color:"#666", fontFamily:"'Barlow Condensed',sans-serif", letterSpacing:2, marginTop:8 }}>
+          Drag the handle to compare
+        </p>
+      </div>
+
+      {/* Slider */}
+      <div style={{ maxWidth:1350, margin:"0 auto" }}>
+        <BeforeAfterSlider key={current} beforeUrl={pair.beforeImageUrl} afterUrl={pair.afterImageUrl}
+          onDragStart={() => { isDragging.current = true; }}
+          onDragEnd={() => { isDragging.current = false; }}
+        />
+      </div>
+
+      {/* Dot navigation */}
+      <div style={{ display:"flex", justifyContent:"center", alignItems:"center", gap:10, marginTop:32 }}>
+        {pairs.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            aria-label={`Image pair ${i + 1}`}
+            style={{
+              width: i === current ? 32 : 10, height:10,
+              borderRadius:5, border:"none", padding:0,
+              background: i === current ? "var(--red)" : "rgba(255,255,255,0.15)",
+              cursor:"pointer", transition:"all 0.35s",
+            }}
+          />
+        ))}
+      </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .gallery-section { padding: 80px 24px !important; }
+        }
+        @media (max-width: 600px) {
+          .ba-slider-container { aspect-ratio: 4/3 !important; }
+        }
+      `}</style>
+    </section>
+  );
+}
+
 // ─── APP ─────────────────────────────────────────────────────────────────────
 export default function App() {
   return (
@@ -1027,6 +1172,7 @@ export default function App() {
       <Strip />
       <About />
       <Services />
+      <BeforeAfterSection />
       <Evaluate />
       <CTABanner />
       <Contact />
