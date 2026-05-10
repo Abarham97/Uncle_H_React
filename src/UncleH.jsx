@@ -517,6 +517,14 @@ function Contact() {
   });
   const [photos, setPhotos] = useState([]);
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
+  const [serviceOptions, setServiceOptions] = useState(SERVICE_OPTIONS);
+
+  useEffect(() => {
+    fetch(`${config.apiUrl}/api/srv/all`)
+      .then(r => r.json())
+      .then(data => setServiceOptions(data.map(s => s.title)))
+      .catch(() => {});
+  }, []);
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
@@ -589,7 +597,7 @@ function Contact() {
           <label style={fieldLabelStyle}>Service Needed</label>
           <select name="service" value={form.service} onChange={handleChange} required style={inputStyle}>
             <option value="">Select a service...</option>
-            {SERVICE_OPTIONS.map(o => <option key={o}>{o}</option>)}
+            {serviceOptions.map(o => <option key={o}>{o}</option>)}
           </select>
         </div>
         {/* Appointment Date */}
