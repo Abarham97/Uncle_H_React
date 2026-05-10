@@ -403,6 +403,15 @@ function ServiceCard({ num, icon, title, desc }) {
 }
 
 function Services() {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    fetch(`${config.apiUrl}/api/srv/all`)
+      .then(r => r.json())
+      .then(data => setServices(data))
+      .catch(() => setServices(SERVICES));
+  }, []);
+
   return (
     <section id="services" style={{ padding:"120px 60px", background:"var(--dark2)" }} className="services-section">
       <div style={{ textAlign:"center", marginBottom:72 }}>
@@ -412,7 +421,7 @@ function Services() {
         <h2 style={h2Style}>OUR <span style={{ color:"var(--red)" }}>SERVICES</span></h2>
       </div>
       <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:2 }} className="services-grid">
-        {SERVICES.map(s => <ServiceCard key={s.num} {...s} />)}
+        {services.map(s => <ServiceCard key={s.num} {...s} />)}
       </div>
       <style>{`
         @media (max-width: 900px) {
