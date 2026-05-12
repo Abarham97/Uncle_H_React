@@ -293,7 +293,7 @@ function About() {
     }} className="about-grid">
       {/* Visual placeholder cards */}
       <div style={{ position:"relative", height:500 }} className="about-visual">
-        <div style={{ ...aboutCard, top:0, left:0, zIndex:2 }}>
+        <div style={{ ...aboutCard, top:0, left:0, zIndex:2 }} className="about-card about-card--primary">
           <div style={cardIconStyle}>🛠️</div>
           <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:28, color:"#fff", letterSpacing:2, marginBottom:12 }}>
             Craftsmanship First
@@ -307,7 +307,7 @@ function About() {
           bottom:0, right:-30, zIndex:1,
           background:"var(--dark4)", borderColor:"rgba(204,20,20,0.2)",
           padding:"28px 36px", width:300,
-        }}>
+        }} className="about-card about-card--secondary">
           <div style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:11, letterSpacing:3, color:"var(--red)", textTransform:"uppercase", marginBottom:8 }}>
             Appointment Only
           </div>
@@ -349,7 +349,9 @@ function About() {
       <style>{`
         @media (max-width: 900px) {
           .about-grid { grid-template-columns: 1fr !important; padding: 80px 24px !important; }
-          .about-visual { height: 340px !important; }
+          .about-visual { height: auto !important; display: flex; flex-direction: column; gap: 16px; }
+          .about-card { position: static !important; width: 100% !important; right: auto !important; bottom: auto !important; top: auto !important; left: auto !important; }
+          .about-card--secondary { width: 100% !important; }
         }
       `}</style>
     </section>
@@ -613,6 +615,8 @@ function Contact() {
               ...inputStyle,
               colorScheme:"dark",
               cursor:"pointer",
+              color:"#fff",
+              WebkitTextFillColor:"#fff",
             }}
           />
         </div>
@@ -1067,7 +1071,7 @@ function BeforeAfterSlider({ beforeUrl, afterUrl, onDragStart, onDragEnd }) {
         <div style={{
           position:"absolute", top:"50%", left:"50%",
           transform:"translate(-50%,-50%)",
-          width:44, height:44, borderRadius:"50%",
+          width:54, height:54, borderRadius:"50%",
           background:"var(--red)", border:"3px solid #fff",
           display:"flex", alignItems:"center", justifyContent:"center",
           fontSize:16, color:"#fff",
@@ -1137,7 +1141,7 @@ function BeforeAfterSection() {
           Real Results
         </span>
         <h2 style={h2Style}>BEFORE <span style={{ color:"var(--red)" }}>&amp; AFTER</span></h2>
-        <p style={{ fontSize:14, fontWeight:300, color:"#666", fontFamily:"'Barlow Condensed',sans-serif", letterSpacing:2, marginTop:8 }}>
+        <p style={{ fontSize:14, fontWeight:400, color:"var(--silver)", fontFamily:"'Barlow Condensed',sans-serif", letterSpacing:2, marginTop:8 }}>
           Drag the handle to compare
         </p>
       </div>
