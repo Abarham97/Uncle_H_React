@@ -73,6 +73,10 @@ const FONTS = `
     100% { transform: translateX(-50%); }
   }
   @keyframes spin { to { transform: rotate(360deg); } }
+  input[type="date"]::-webkit-date-and-time-value { color: #fff; }
+  input[type="date"]::-webkit-datetime-edit { color: #fff; }
+  input[type="date"]::-webkit-datetime-edit-fields-wrapper { color: #fff; }
+  input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 `;
 
 // ─── NAV ────────────────────────────────────────────────────────────────────
@@ -617,6 +621,7 @@ function Contact() {
               cursor:"pointer",
               color:"#fff",
               WebkitTextFillColor:"#fff",
+              border:"1px solid rgba(255,255,255,0.25)",
             }}
           />
         </div>
@@ -721,15 +726,7 @@ function Footer() {
       <div style={{ fontSize:12, color:"#555", fontFamily:"'Barlow Condensed',sans-serif", letterSpacing:2 }}>
         © 2026 Uncle H Interior Specialist · Leather & Vinyl Specialist · Mobile Service by Appointment
       </div>
-      <div style={{ display:"flex", gap:16 }}>
-        {["📘","▶️"].map((icon, i) => (
-          <a key={i} href="#" style={{
-            width:38, height:38, border:"1px solid rgba(255,255,255,0.1)",
-            display:"flex", alignItems:"center", justifyContent:"center",
-            fontSize:16, textDecoration:"none", color:"#666", transition:"all 0.2s",
-          }}>{icon}</a>
-        ))}
-      </div>
+      <div style={{ display:"none" }} />
       <style>{`
         @media (max-width: 900px) {
           .footer-inner { padding: 32px 24px !important; flex-direction: column !important; text-align: center !important; }
