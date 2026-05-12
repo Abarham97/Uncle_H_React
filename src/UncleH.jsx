@@ -76,7 +76,7 @@ const FONTS = `
   input[type="date"]::-webkit-date-and-time-value { color: #fff; }
   input[type="date"]::-webkit-datetime-edit { color: #fff; }
   input[type="date"]::-webkit-datetime-edit-fields-wrapper { color: #fff; }
-  input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
+  input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0; position: absolute; width: 100%; height: 100%; }
 `;
 
 // ─── NAV ────────────────────────────────────────────────────────────────────
@@ -609,21 +609,28 @@ function Contact() {
         {/* Appointment Date */}
         <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
           <label style={fieldLabelStyle}>Preferred Appointment Date</label>
-          <input
-            type="date"
-            name="date"
-            value={form.date}
-            onChange={handleChange}
-            min={new Date().toISOString().split("T")[0]}
-            style={{
-              ...inputStyle,
-              colorScheme:"dark",
-              cursor:"pointer",
-              color:"#fff",
-              WebkitTextFillColor:"#fff",
-              border:"1px solid rgba(255,255,255,0.25)",
-            }}
-          />
+          <div style={{ position:"relative" }}>
+            <input
+              type="date"
+              name="date"
+              value={form.date}
+              onChange={handleChange}
+              min={new Date().toISOString().split("T")[0]}
+              style={{
+                ...inputStyle,
+                colorScheme:"dark",
+                cursor:"pointer",
+                color:"#fff",
+                WebkitTextFillColor:"#fff",
+                border:"1px solid rgba(255,255,255,0.25)",
+                paddingRight:44,
+              }}
+            />
+            <span style={{
+              position:"absolute", right:14, top:"50%", transform:"translateY(-50%)",
+              pointerEvents:"none", fontSize:18, lineHeight:1,
+            }}>📅</span>
+          </div>
         </div>
         {/* Message */}
         <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
