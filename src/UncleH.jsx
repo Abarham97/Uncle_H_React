@@ -596,7 +596,7 @@ function Contact() {
         </div>
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }} className="form-row">
           <FormField label="Phone" name="phone" type="tel"   placeholder="(555) 000-0000"  value={form.phone} onChange={handleChange} />
-          <FormField label="Email" name="email" type="email" placeholder="you@email.com"   value={form.email} onChange={handleChange} />
+          <FormField label="Email Address" name="email" type="email" placeholder="you@email.com"   value={form.email} onChange={handleChange} />
         </div>
         {/* Service select */}
         <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
