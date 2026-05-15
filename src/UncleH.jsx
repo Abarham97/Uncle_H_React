@@ -297,15 +297,6 @@ function About() {
     }} className="about-grid">
       {/* Visual placeholder cards */}
       <div style={{ position:"relative", height:500 }} className="about-visual">
-        <div style={{ ...aboutCard, top:0, left:0, zIndex:2 }} className="about-card about-card--primary">
-          <div style={cardIconStyle}>🛠️</div>
-          <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:28, color:"#fff", letterSpacing:2, marginBottom:12 }}>
-            Craftsmanship First
-          </div>
-          <p style={{ fontSize:14, fontWeight:300, lineHeight:1.7, color:"#888" }}>
-            Every repair is handled with precision techniques refined across decades of European practice.
-          </p>
-        </div>
         <div style={{
           ...aboutCard,
           bottom:0, right:-30, zIndex:1,
