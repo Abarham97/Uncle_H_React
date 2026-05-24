@@ -295,21 +295,17 @@ function About() {
       padding:"120px 60px",
       display:"grid", gridTemplateColumns:"1fr 1fr", gap:80, alignItems:"center",
     }} className="about-grid">
-      {/* Visual placeholder cards */}
+      {/* Visual */}
       <div style={{ position:"relative", height:500 }} className="about-visual">
-        <div style={{
-          ...aboutCard,
-          bottom:0, right:-30, zIndex:1,
-          background:"var(--dark4)", borderColor:"rgba(204,20,20,0.2)",
-          padding:"28px 36px", width:300,
-        }} className="about-card about-card--secondary">
-          <div style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:11, letterSpacing:3, color:"var(--red)", textTransform:"uppercase", marginBottom:8 }}>
-            Appointment Only
-          </div>
-          <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:52, color:"#fff", lineHeight:1 }}>
-            Premium
-          </div>
-        </div>
+        <img
+          src="/amad.png"
+          alt="Amad — Uncle H Interior Specialist"
+          style={{
+            position:"absolute", inset:0, width:"100%", height:"100%",
+            objectFit:"cover", objectPosition:"top center",
+            display:"block",
+          }}
+        />
       </div>
 
       {/* Text */}
