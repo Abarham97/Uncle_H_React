@@ -340,7 +340,7 @@ function About() {
       <style>{`
         @media (max-width: 900px) {
           .about-grid { grid-template-columns: 1fr !important; padding: 80px 24px !important; }
-          .about-visual { height: auto !important; display: flex; flex-direction: column; gap: 16px; }
+          .about-visual { height: 380px !important; display: flex; flex-direction: column; gap: 16px; }
           .about-card { position: static !important; width: 100% !important; right: auto !important; bottom: auto !important; top: auto !important; left: auto !important; }
           .about-card--secondary { width: 100% !important; }
         }
